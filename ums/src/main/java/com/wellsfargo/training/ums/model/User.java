@@ -18,44 +18,44 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 /*
 The @Entity annotation specifies that the class is an entity and is mapped to a database table. 
 The @Table annotation specifies the name of the database table to be used for mapping. 
-*/
+ */
 @Entity
 @Table(name="user")
 public class User {
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="customer_id")
 	private long customerId;
-	
+
 	@Column(name="contact_number", unique=true)
 	private long contactNumber;
-	
-    @Column(name="first_name")
-    private String firstName;
-    
-    @Column(name="last_name")
-    private String lastName;
-    
-    @Column(name="city")
-    private String city;
-    
-    @Column(name="ocupation")
-    private String occupation;
-    
-    @Column(name="password")
-    private String password;
-    
-    @Column(name="dob")
-    @JsonFormat(pattern="yyyy-MM-dd")
-    @Temporal(TemporalType.DATE)
-    private Date dob;
-    
-    
-    //No-Argument Constructor
-    public User() {
-    	
-    }
+
+	@Column(name="first_name")
+	private String firstName;
+
+	@Column(name="last_name")
+	private String lastName;
+
+	@Column(name="city")
+	private String city;
+
+	@Column(name="ocupation")
+	private String occupation;
+
+	@Column(name="password")
+	private String password;
+
+	@Column(name="dob")
+	@JsonFormat(pattern="yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
+	private Date dob;
+
+
+	//No-Argument Constructor
+	public User() {
+
+	}
 
 
 	public long getContactNumber() {
@@ -112,18 +112,18 @@ public class User {
 		byte[] decodeBytes = Base64.getDecoder().decode(this.password);
 		String decodedString = new String(decodeBytes);
 		return decodedString;
-		
+
 	}
 
 
 	public void setPassword(String password) {
-		
+
 		Base64.Encoder encoder = Base64.getEncoder();  // encrypt password in database field
-        String normalString = password;
-   
-        String encodedString = encoder.encodeToString(
-        										normalString.getBytes());
-        this.password = encodedString;
+		String normalString = password;
+
+		String encodedString = encoder.encodeToString(
+				normalString.getBytes());
+		this.password = encodedString;
 	}
 
 
@@ -135,8 +135,8 @@ public class User {
 	public void setDob(Date dob) {
 		this.dob = dob;
 	}
-    
-    
 
-	
+
+
+
 }
