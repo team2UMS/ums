@@ -51,6 +51,12 @@ public class User {
 	@Temporal(TemporalType.DATE)
 	private Date dob;
 
+	@Column(name="branch")
+	private String branch;
+
+
+
+
 
 	//No-Argument Constructor
 	public User() {
@@ -135,7 +141,16 @@ public class User {
 	public void setDob(Date dob) {
 		this.dob = dob;
 	}
+	
+	
+	public String getBranch() {
+		return branch;
+	}
 
+
+	public void setBranch(String branch) {
+		this.branch = branch;
+	}
 
 
 
