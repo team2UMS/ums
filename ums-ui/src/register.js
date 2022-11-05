@@ -11,7 +11,16 @@ const Register=()=>
         var a = fetch(`${REACT_APP_API_URL}/api/register`,{
             method:'POST',
             mode:'cors',
-            body: {}
+            body: {
+              contactNumber:e.target.uno.value,
+              firstName:e.target.fname.value,
+              lastName:e.target.lname.value,
+              city:e.target.city.value,
+              occupation:e.target.occ.value,
+              dob:e.target.dob.value,
+              branch:e.target.branch.value,
+              password:e.target.pass.value
+            }
         });
         // var resp= a.json();
         console.log(a);

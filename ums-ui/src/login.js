@@ -11,7 +11,10 @@ const Login=()=>
         var a = fetch(`${REACT_APP_API_URL}/api/login`,{
             method:'POST',
             mode:'cors',
-            body: {contactNumber:e.target.uno.value,password:e.target.pass.value}
+            body: {
+              contactNumber:e.target.uno.value,
+              password:e.target.pass.value
+            }
         });
         // var resp= a.json();
         console.log(a);
