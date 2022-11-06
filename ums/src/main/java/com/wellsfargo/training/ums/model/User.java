@@ -32,7 +32,7 @@ public class User {
 
 
 	@Column(name="contact_number", unique=true)
-	private long contactNumber;
+	private String contactNumber;
 
 	@Column(name="first_name")
 	private String firstName;
@@ -67,12 +67,12 @@ public class User {
 	}
 
 
-	public long getContactNumber() {
+	public String getContactNumber() {
 		return contactNumber;
 	}
 
 
-	public void setContactNumber(long contactNumber) {
+	public void setContactNumber(String contactNumber) {
 		this.contactNumber = contactNumber;
 	}
 
