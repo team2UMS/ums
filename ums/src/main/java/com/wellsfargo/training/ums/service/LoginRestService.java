@@ -1,7 +1,6 @@
 package com.wellsfargo.training.ums.service;
 
 
-
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -25,9 +24,10 @@ public class LoginRestService {
 	}
 
 	
-	public Optional<User> loginUser(Long contactNumber) {
+	public Optional<User> FindUser(String contactNumber) {
 		
 		return userRepository.findByContactNumber(contactNumber);
 	}
+	
 	
 }
