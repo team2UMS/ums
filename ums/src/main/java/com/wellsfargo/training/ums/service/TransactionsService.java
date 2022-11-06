@@ -28,12 +28,12 @@ public class TransactionsService {
 		
 	}
 	
-	public List<Transactions> findall(TransactionRequest t) {
-		// TODO Auto-generated method stub
-		
-		
-		return tRepository.findall(t.getC_id(),t.getT_type(),t.getfDate(),t.gettDate());
-	}
+//	public List<Transactions> findall(TransactionRequest t) {
+//		// TODO Auto-generated method stub
+//		
+//		
+//		return tRepository.findall(t.getC_id(),t.getT_type(),t.getfDate(),t.gettDate());
+//	}
 	
 	
 	}

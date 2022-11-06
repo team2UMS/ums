@@ -28,6 +28,9 @@ public class User {
 	@Column(name="customer_id")
 	private long customerId;
 
+
+
+
 	@Column(name="contact_number", unique=true)
 	private long contactNumber;
 
@@ -150,6 +153,10 @@ public class User {
 
 	public void setBranch(String branch) {
 		this.branch = branch;
+	}
+	
+	public long getCustomerId() {
+		return customerId;
 	}
 
 
