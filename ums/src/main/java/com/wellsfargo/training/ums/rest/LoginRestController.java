@@ -7,6 +7,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,7 @@ public class LoginRestController {
 	//Open Postman and make POST request - http://localhost:8080/ums/api/register
 	//Under body tab --> raw --> Text --> Json and type the json data to be saved
 	@PostMapping("/register") 
+	@CrossOrigin(origins="http://localhost:3000/")
 	public ResponseEntity<Object> createUser(@Validated @RequestBody User user) throws ResourceNotFoundException{
 
 		try {
@@ -56,6 +58,7 @@ public class LoginRestController {
 
 
 	@PostMapping("/login")
+	@CrossOrigin(origins="http://localhost:3000/")
 	public ResponseEntity<Object> loginDealer(@Validated @RequestBody Map<String,Object> credentials) throws ResourceNotFoundException
 	{
 		try {
