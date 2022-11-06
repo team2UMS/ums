@@ -14,8 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.transaction.Transaction;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
 @Table(name="Transactions")
@@ -25,10 +25,7 @@ public class Transactions {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="transaction_id")
 	private long transactionId;
-	
-	@Column(name="customer_id")
-	private long customerId;
-	
+
 	@Column(name="transaction_type")
 	private String transactionType;
 	
@@ -37,15 +34,12 @@ public class Transactions {
 	@Temporal(TemporalType.DATE)
 	private Date transactionDate;
 	
+	@ManyToOne
+	@JoinColumn(name="customer_id", referencedColumnName="customer_id")
+	@JsonBackReference
+	private User user;
 	
 	
-	public long getCustomerId() {
-		return customerId;
-	}
-
-	public void setCustomerId(long customerId) {
-		this.customerId = customerId;
-	}
 
 	public Transactions() {
 		
@@ -70,6 +64,14 @@ public class Transactions {
 
 	public void setTransactionDate(Date transactionDate) {
 		this.transactionDate = transactionDate;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 	

@@ -37,7 +37,8 @@ public class TransactionsController {
 		t1.setTransactionDate(transaction.getTransactionDate());
 		//t1.setTransactionId(transaction.getTransactionId());
 		t1.setTransactionType(transaction.getTransactionType());
-		t1.setCustomerId(transaction.getCustomerId());
+		t1.setUser(transaction.getUser());
+	
 		tservice.SaveTransaction(t1);
 		return t1;
 		
