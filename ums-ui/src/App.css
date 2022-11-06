@@ -61,3 +61,19 @@ input[type="submit"] {
   padding: 2rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+ul{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  list-style-type: none;
+}
+li{
+  padding: 5px;
+}
+a{
+  color: rgb(242, 228, 228);
+  text-decoration: none;
+}
+a:hover{
+  color: #0e6cf1;
+}

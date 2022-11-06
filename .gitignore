@@ -1,6 +1,8 @@
 # Compiled class file
 *.class
 
+#prefernces
+*.prefs
 # Log file
 *.log
 

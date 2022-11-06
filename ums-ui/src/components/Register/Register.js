@@ -1,26 +1,15 @@
-import './App.css';
-import Footer from './Footer';
-import Header from './Header';
-import React, { useState } from "react";
-const { REACT_APP_API_URL } = process.env;
+import Footer from '../Footer/Footer';
+import Header from '../Header/Header';
+import {handleRegister} from '../../service/auth';
+import {useNavigate } from 'react-router-dom';
 const Register=()=>
 {
-    const [isSubmitted, setIsSubmitted] = useState(false);
-    const handleSubmit=(e)=>{
-        e.preventDefault();
-        var a = fetch(`${REACT_APP_API_URL}/api/register`,{
-            method:'POST',
-            mode:'cors',
-            body: {}
-        });
-        // var resp= a.json();
-        console.log(a);
-    }
+  const navigate=useNavigate();
   return (<>
   <Header/>
   <div className="title">GB Brach Registeration</div>
   <div className="form">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e)=>handleRegister(e,navigate)}>
         <div className="input-container">
           <label>Customer Number </label>
           <input type="text" name="uno" required />
