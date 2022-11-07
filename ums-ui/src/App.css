@@ -76,4 +76,18 @@ a{
 }
 a:hover{
   color: #0e6cf1;
+} 
+.container {
+  border: 1px solid #eeccee;
+  max-height: 500px;
+  overflow-y: scroll;
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+th,td{
+  padding-left: 5px;
+  padding-right: 5px;
 }

@@ -21,6 +21,8 @@ import com.wellsfargo.training.ums.response.ResponseHandler;
 import com.wellsfargo.training.ums.response.TransactionRequest;
 import com.wellsfargo.training.ums.service.TransactionsService;
 
+import src.main.java.com.wellsfargo.training.ums.rest.CrossOrigin;
+
 
 
 @RestController
@@ -34,6 +36,7 @@ public class TransactionsController {
 
 
 	@PostMapping("/transaction") 
+	@CrossOrigin(origins="http://localhost:3000/")
 	public ResponseEntity<Object> addTransaction(@Validated @RequestBody Transactions transaction) {
 		try {
 			Transactions t1=new Transactions();
@@ -53,7 +56,8 @@ public class TransactionsController {
 
 	}
 
-	@GetMapping("/statement")
+	@PostMapping("/statement")
+	@CrossOrigin(origins="http://localhost:3000/")
 	public ResponseEntity<Object> ReadTransaction(@Validated @RequestBody TransactionRequest transaction){
 
 		LocalDate date = LocalDate.now();
