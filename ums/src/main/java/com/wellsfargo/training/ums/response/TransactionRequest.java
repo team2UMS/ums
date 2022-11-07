@@ -4,10 +4,13 @@ import java.util.Date;
 
 import org.springframework.boot.autoconfigure.security.ConditionalOnDefaultWebSecurity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class TransactionRequest {
 	
 	private long c_id;
 	private String t_type;
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date fDate;
 	private Date tDate;
 	public long getC_id() {
