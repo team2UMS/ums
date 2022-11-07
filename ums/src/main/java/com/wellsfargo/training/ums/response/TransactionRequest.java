@@ -1,8 +1,7 @@
 package com.wellsfargo.training.ums.response;
 
-import java.util.Date;
+import java.sql.Date;
 
-import org.springframework.boot.autoconfigure.security.ConditionalOnDefaultWebSecurity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
