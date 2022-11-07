@@ -31,11 +31,11 @@ public class TransactionsService {
 	
 	public List<Transactions> findall(TransactionRequest t) {
 		
-		return tRepository.findall(t.getC_id(),t.getT_type(),t.getfDate(),t.gettDate());
+		return tRepository.findall(t.getCustomerId(),t.getTransactionType(),t.getFromDate(),t.getToDate());
 	}
 	public List<Transactions> findalltd(TransactionRequest t) {
 		// TODO Auto-generated method stub
-		return tRepository.findalltd(t.getC_id(),t.getfDate(),t.gettDate());
+		return tRepository.findalltd(t.getCustomerId(),t.getFromDate(),t.getToDate());
 	}
 	
 	
