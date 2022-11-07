@@ -29,6 +29,18 @@ public class Transactions {
 	@Column(name="transaction_type")
 	private String transactionType;
 	
+	
+	@Column(name="amount")
+	private long amount;
+	
+	public long getAmount() {
+		return amount;
+	}
+
+	public void setAmount(long amount) {
+		this.amount = amount;
+	}
+
 	@Column(name="transaction_date")
 	@JsonFormat(pattern="yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
