@@ -6,6 +6,9 @@ const Layout = () => {
       <Outlet />
       <nav>
         <ul>
+        <li>
+            <Link to="/balance">Balance</Link>
+          </li>
           <li>
             <Link to="/loan">Loan</Link>
           </li>
