@@ -37,7 +37,7 @@ public class TransactionsController {
 	public ResponseEntity<Object> addTransaction(@Validated @RequestBody Transactions transaction) {
 		try {
 			Transactions t1=new Transactions();
-			
+
 			t1.setTransactionDate(Date.valueOf(LocalDate.now()));
 			//t1.setTransactionDate(transaction.getTransactionDate());
 			t1.setTransactionType(transaction.getTransactionType());
@@ -55,37 +55,31 @@ public class TransactionsController {
 
 	@GetMapping("/statement")
 	public ResponseEntity<Object> ReadTransaction(@Validated @RequestBody TransactionRequest transaction){
-		
+
 		LocalDate date = LocalDate.now();
 		LocalDate receivedToDate = transaction.getToDate().toLocalDate();
 		LocalDate receivedFromDate = transaction.getFromDate().toLocalDate();
+		//if From-date is greater than To-date
+		if(receivedFromDate.compareTo(receivedToDate) > 0) 
+			return ResponseHandler.generateResponse("Invalid Range", HttpStatus.BAD_REQUEST, null);
+		//if entered To-date is ahead of current date
+		else if(receivedToDate.compareTo(date) > 0)
+			return ResponseHandler.generateResponse("Incorrect Range. " +
+					receivedToDate + " is greater than today's date i.e " 
+					+ date, HttpStatus.BAD_REQUEST, null);
+		//if entered From-date is ahead of current date
+		else if(receivedFromDate.compareTo(date) > 0)
+			return ResponseHandler.generateResponse("Incorrect Range. " +
+					receivedFromDate + " is greater than today's date i.e " 
+					+ date, HttpStatus.BAD_REQUEST, null);
+
 
 		if(transaction.getTransactionType().equals("withdraw")||transaction.getTransactionType().equals("deposit")){
-
-			//if entered To-date is ahead of current date
-			if(receivedToDate.compareTo(date) > 0)
-				return ResponseHandler.generateResponse("Incorrect Range. " +
-						receivedToDate + " is greater than today's date i.e " 
-						+ date, HttpStatus.BAD_REQUEST, null);
-			//if From-date is greater than To-date
-			else if(receivedFromDate.compareTo(receivedToDate) > 0) 
-				return ResponseHandler.generateResponse("Invalid Range", HttpStatus.BAD_REQUEST, null);
-
 			return ResponseHandler.generateResponse("Successful", HttpStatus.OK, tservice.findall(transaction));
 
 		}
 		else {
-			//if entered To-date is ahead of current date
-			if(receivedToDate.compareTo(date) > 0)
-				return ResponseHandler.generateResponse("Incorrect Range. " +
-						receivedToDate + " is greater than today's date i.e " 
-						+ date, HttpStatus.BAD_REQUEST, null);
-			//if From-date is greater than To-date
-			else if(receivedFromDate.compareTo(receivedToDate) > 0) 
-				return ResponseHandler.generateResponse("Invalid Range", HttpStatus.BAD_REQUEST, null);
-
 			return ResponseHandler.generateResponse("Successful", HttpStatus.OK, tservice.findalltd(transaction));
-
 		}
 
 
