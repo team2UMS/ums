@@ -9,6 +9,7 @@ import javax.transaction.Transaction;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.ConditionalOnDefaultWebSecurity;
 import org.springframework.stereotype.Service;
 
 import com.wellsfargo.training.ums.model.Transactions;
@@ -28,12 +29,14 @@ public class TransactionsService {
 		
 	}
 	
-//	public List<Transactions> findall(TransactionRequest t) {
-//		// TODO Auto-generated method stub
-//		
-//		
-//		return tRepository.findall(t.getC_id(),t.getT_type(),t.getfDate(),t.gettDate());
-//	}
+	public List<Transactions> findall(TransactionRequest t) {
+		
+		return tRepository.findall(t.getC_id(),t.getT_type(),t.getfDate(),t.gettDate());
+	}
+	public List<Transactions> findalltd(TransactionRequest t) {
+		// TODO Auto-generated method stub
+		return tRepository.findalltd(t.getC_id(),t.getfDate(),t.gettDate());
+	}
 	
 	
 	}
