@@ -14,7 +14,7 @@ public class Balance {
 	@Column(name="customer_Id")
 	private long customerId;
 	@Column(name="Balance")
-	private long aBalance;
+	private long accBalance;
 	
 
 
@@ -22,11 +22,11 @@ public class Balance {
 		return customerId;
 	}
 	
-	public long getaBalance() {
-		return aBalance;
+	public long getaccBalance() {
+		return accBalance;
 	}
-	public void setaBalance(long aBalance) {
-		this.aBalance = aBalance;
+	public void setaccBalance(long aBalance) {
+		this.accBalance = aBalance;
 	}
 
 	public void setCustomerId(long customerId) {

@@ -1,7 +1,14 @@
 package com.wellsfargo.training.ums.rest;
 
+import java.sql.Date;
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,8 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wellsfargo.training.ums.model.Balance;
+import com.wellsfargo.training.ums.model.Loan;
+import com.wellsfargo.training.ums.model.Transactions;
+import com.wellsfargo.training.ums.model.User;
+import com.wellsfargo.training.ums.response.ResponseHandler;
 import com.wellsfargo.training.ums.response.TransactionObject;
 import com.wellsfargo.training.ums.service.BalanceService;
+import com.wellsfargo.training.ums.service.TransactionsService;
 
 @RestController
 //add @CrossOrigin for react here
@@ -18,29 +30,18 @@ import com.wellsfargo.training.ums.service.BalanceService;
 public class BalanceController {
 	@Autowired
 	private BalanceService bService;
-	@PostMapping("/addregister")
-	public void addregister(@Validated @RequestBody Balance balance) {
-		
-		bService.addregister(balance);
-	}
 	
-	@PostMapping("/deposit")
-	public void deposit(@Validated @RequestBody TransactionObject t1) {
+	@Autowired
+	private TransactionsService tService;
+	
+	
+
+	@GetMapping("/balance")
+	public ResponseEntity<Object> addLoan(@Validated @RequestParam(name="c_id") long customerId){
 		
-		
-		bService.deposit(t1);
-		
-		
-	}
-	@PostMapping("/withdraw")
-	public void withdraw(@Validated @RequestBody TransactionObject t1) {
-		Balance balance=bService.find(t1);
-		if(balance.getaBalance()< (t1.getAmount())){
-			System.out.println("can't do");
-		}
-		else {
-			bService.withdraw(t1);
-		}
+	
+		long bAmount=bService.balance(customerId).getaccBalance();
+		return ResponseHandler.generateResponse("Your balance amount is:"+bAmount, HttpStatus.OK, null);	
 	}
 	
 
