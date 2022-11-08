@@ -16,9 +16,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
+
+import com.wellsfargo.training.ums.model.Balance;
 import com.wellsfargo.training.ums.model.Transactions;
+import com.wellsfargo.training.ums.model.User;
 import com.wellsfargo.training.ums.response.ResponseHandler;
+import com.wellsfargo.training.ums.response.TransactionObject;
 import com.wellsfargo.training.ums.response.TransactionRequest;
+import com.wellsfargo.training.ums.service.BalanceService;
 import com.wellsfargo.training.ums.service.TransactionsService;
 
 
@@ -31,29 +36,54 @@ public class TransactionsController {
 
 	@Autowired
 	private TransactionsService tservice;
+	
+	@Autowired
+	private BalanceService bService;
 
 
 
-	@PostMapping("/transaction") 
-	@CrossOrigin(origins="http://localhost:3000/")
-	public ResponseEntity<Object> addTransaction(@Validated @RequestBody Transactions transaction) {
-		try {
-			Transactions t1=new Transactions();
-
-			t1.setTransactionDate(Date.valueOf(LocalDate.now()));
-			//t1.setTransactionDate(transaction.getTransactionDate());
-			t1.setTransactionType(transaction.getTransactionType());
-			t1.setAmount(transaction.getAmount());
-			t1.setUser(transaction.getUser());
-
-			tservice.SaveTransaction(t1);
-			return ResponseHandler.generateResponse("Successful", HttpStatus.OK, t1.getTransactionId());
-		} catch(Exception ex) {
-			return ResponseHandler.generateResponse("Unsuccessful", HttpStatus.BAD_REQUEST, null);
-		}
-
-
+	@PostMapping("/deposit")
+	@CrossOrigin("origins=\"http://localhost:3000/")
+	public ResponseEntity<Object> deposit(@Validated @RequestBody TransactionObject t1) {
+		
+	
+		tservice.deposit(t1);
+		Transactions t=new Transactions();
+		t.setAmount(t1.getAmount());
+		t.setTransactionDate(Date.valueOf(LocalDate.now()));
+		t.setTransactionType("deposit");
+		tservice.SaveTransaction(t);
+		
+		return ResponseHandler.generateResponse("Successful", HttpStatus.OK, null);
+		
+		
 	}
+
+
+	
+
+
+	@PostMapping("/withdraw")
+	@CrossOrigin("origins=\"http://localhost:3000/")
+	public ResponseEntity<Object> withdraw(@Validated @RequestBody TransactionObject t1) {
+		
+		Balance balance=bService.balance(t1.getCustomerId());
+		if(balance.getaccBalance()< (t1.getAmount())){
+			return ResponseHandler.generateResponse("InSufficient Balance", HttpStatus.OK, null);
+		}
+		else {
+			tservice.withdraw(t1);
+			Transactions t=new Transactions();
+			t.setAmount(t1.getAmount());
+			t.setTransactionDate(Date.valueOf(LocalDate.now()));
+			t.setTransactionType("withdraw");
+			tservice.SaveTransaction(t);
+			return ResponseHandler.generateResponse("Successful", HttpStatus.OK, null);
+		}
+}
+
+
+
 
 	@PostMapping("/statement")
 	@CrossOrigin(origins="http://localhost:3000/")

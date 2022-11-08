@@ -17,6 +17,8 @@ import com.wellsfargo.training.ums.exception.ResourceNotFoundException;
 import com.wellsfargo.training.ums.exception.UserAlreadyExistsException;
 import com.wellsfargo.training.ums.model.User;
 import com.wellsfargo.training.ums.response.ResponseHandler;
+import com.wellsfargo.training.ums.service.BalanceService;
+import com.wellsfargo.training.ums.service.LoanService;
 import com.wellsfargo.training.ums.service.LoginRestService;
 
 @RestController
@@ -26,6 +28,12 @@ public class LoginRestController {
 
 	@Autowired
 	private LoginRestService lrservice;
+	@Autowired
+	private LoanService loanService;
+	@Autowired
+	private BalanceService balanceService;
+	
+	
 
 	@PostMapping("/register") 
 	@CrossOrigin(origins="http://localhost:3000/")
@@ -47,6 +55,10 @@ public class LoginRestController {
 			u.setDob(user.getDob());
 			u.setBranch(user.getBranch());
 			u = lrservice.registerUser(u);
+			loanService.addnewcustomer(u);
+			balanceService.addnewCustomer(u);
+			
+			
 			return ResponseHandler.generateResponse("Registered", HttpStatus.OK, u.getCustomerId());
 			
 		}
