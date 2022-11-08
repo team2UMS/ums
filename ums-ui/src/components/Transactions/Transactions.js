@@ -3,7 +3,7 @@ import Header from '../Header/Header';
 import {useGlobalState} from "../../service/GlobalState";
 import { handleTransaction } from '../../service/transact';
 const Transactions = () => {
-  const [globalState]=useGlobalState();
+  const [globalState,setGlobalState]=useGlobalState();
   return (<>
     <Header/>
     <div className="title">Transactions</div>
@@ -16,7 +16,10 @@ const Transactions = () => {
 
           <div className="input-container">
             <label>Select the transaction type</label>
-            <input type="text" name="type" required /> 
+            <select name="type" id="dog-names">
+                <option value="deposit">Deposit</option>
+                <option value="withdraw">Withdraw</option>
+            </select>
           </div>
 
           <div className="input-container">

@@ -14,7 +14,7 @@ const Statement = () => {
       <Header/>
       <div className="title">Statement</div>
       <div className="form">
-          <form onSubmit={(e)=>fetchStatement(e,setTableData,setToggle)}>
+          <form onSubmit={(e)=>fetchStatement(e,setTableData,setToggle,globalState.customerId)}>
             <div className="input-container">
               <label>Customer ID </label>
               <label>{globalState.customerId}</label>
@@ -22,7 +22,10 @@ const Statement = () => {
   
             <div className="input-container">
               <label>Select the transaction type</label>
-              <input type="text" name="type" required /> 
+              <select name="type" id="dog-names">
+                <option value="deposit">Deposit</option>
+                <option value="withdraw">Withdraw</option>
+              </select>
             </div>
   
             <div className="input-container">

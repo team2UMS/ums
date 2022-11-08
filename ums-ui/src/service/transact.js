@@ -1,5 +1,6 @@
 const { REACT_APP_API_URL } = process.env;
 export async function handleLoan(e,customerId){
+  e.preventDefault();
     var a = await fetch(`${REACT_APP_API_URL}/api/applyloan`,{
         method:'POST',
         mode:'cors',
@@ -22,6 +23,8 @@ export async function handleLoan(e,customerId){
 
 }
 export async function handleTransaction(e,customerId){
+  e.preventDefault();
+  console.log(e);
     var type=e.target.type.value;
     var a = await fetch(`${REACT_APP_API_URL}/api/`+type,{
         method:'POST',
