@@ -2,6 +2,8 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import {handleLogin} from '../../service/auth';
 import {useNavigate } from 'react-router-dom';
+import React from 'react';
+import {useGlobalState} from "../../service/GlobalState";
 import React, { useState } from 'react';
 import {
   MDBBtn,
@@ -15,7 +17,10 @@ import {
 from 'mdb-react-ui-kit';
 const Login=()=>
 {
+  
+  const [globalState,updateGlobalState]=useGlobalState();
   const navigate=useNavigate();
+  const updateState=(state,value) =>updateGlobalState(state,value);
   return (<>
   <Header/>
   <div className="title">
@@ -28,8 +33,7 @@ const Login=()=>
   </div>
   </div>
   <div className="form">
-    
-      <form onSubmit={(e)=>handleLogin(e,navigate)}>
+      <form onSubmit={(e)=>handleLogin(e,navigate,updateState)}>
       {/* <div><h4 className='mb-3' style={{
     display: "flex",
     justifyContent: "center",

@@ -1,6 +1,6 @@
-import { useNavigate } from "react-router-dom";
+
 const { REACT_APP_API_URL } = process.env;
-export async function handleLogin(e,navigate){
+export async function handleLogin(e,navigate,updateState){
     e.preventDefault();
     var a = await fetch(`${REACT_APP_API_URL}/api/login`,{
         method:'POST',
@@ -18,10 +18,15 @@ export async function handleLogin(e,navigate){
         alert(resp.message);
     }
     else if(resp.status===409){
+        alert(resp.message);
         navigate("../register", { replace: true });
     }
     else if(resp.status===200){
+        updateState("customerId",resp.data);
         navigate("../userMenu", { replace: true });
+    }
+    else{
+        alert("Internal Server Error");
     }
 }
 export async function handleRegister(e,navigate){
@@ -50,5 +55,8 @@ export async function handleRegister(e,navigate){
     }
     else if(resp.status===200){
         navigate("../", { replace: true });
+    }
+    else{
+        alert("Internal Server Error");
     }
 }

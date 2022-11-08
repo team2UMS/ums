@@ -43,7 +43,7 @@ const Register=()=>
         </div>
         <div className="input-container">
           <label>Date of Birth </label>
-          <input type="text" name="dob" required />
+          <input type="date" name="dob" required />
         </div>
         <div className="input-container">
           <label>Branch </label>

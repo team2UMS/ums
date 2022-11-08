@@ -2,19 +2,22 @@ import Table from "../Table/Table";
 import Header from "../Header/Header";
 import { useState } from "react";
 import { fetchStatement } from "../../service/fetch";
-const data=[];
-
+import { useGlobalState } from "../../service/GlobalState";
 const Statement = () => {
   const {tableShow,setTableShow}=useState(0);
+  const {data,setData}=useState({});
+  const [globalState]=useGlobalState();
+  const setTableData=(resp)=>setData(resp);
+  const setToggle=(resp)=>setTableShow(resp);
   console.log(data);
     return (<>
       <Header/>
       <div className="title">Statement</div>
       <div className="form">
-          <form onSubmit={(e)=>fetchStatement(e,tableShow,setTableShow,data)}>
+          <form onSubmit={(e)=>fetchStatement(e,setTableData,setToggle)}>
             <div className="input-container">
               <label>Customer ID </label>
-              <input type="text" name="cid" value="1" />
+              <label>{globalState.customerId}</label>
             </div>
   
             <div className="input-container">
