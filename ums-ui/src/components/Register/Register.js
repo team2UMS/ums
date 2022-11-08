@@ -7,7 +7,7 @@ const Register=()=>
   const navigate=useNavigate();
   return (<>
   <Header/>
-  <div className="title">GB Brach Registeration</div>
+  <div className="title">Global Bank Branch Registeration</div>
   <div className="form">
       <form onSubmit={(e)=>handleRegister(e,navigate)}>
         <div className="input-container">
