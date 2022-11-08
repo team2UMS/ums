@@ -2,7 +2,6 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import {handleLogin} from '../../service/auth';
 import {useNavigate } from 'react-router-dom';
-import React from 'react';
 import {useGlobalState} from "../../service/GlobalState";
 import React, { useState } from 'react';
 import {
