@@ -15,13 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import com.wellsfargo.training.ums.model.Transactions;
 import com.wellsfargo.training.ums.response.ResponseHandler;
 import com.wellsfargo.training.ums.response.TransactionRequest;
 import com.wellsfargo.training.ums.service.TransactionsService;
 
-import src.main.java.com.wellsfargo.training.ums.rest.CrossOrigin;
 
 
 
