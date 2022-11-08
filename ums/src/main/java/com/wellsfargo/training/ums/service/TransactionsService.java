@@ -6,8 +6,11 @@ import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.wellsfargo.training.ums.model.Balance;
 import com.wellsfargo.training.ums.model.Transactions;
 import com.wellsfargo.training.ums.repository.TransactionsRepository;
+import com.wellsfargo.training.ums.response.TransactionObject;
 import com.wellsfargo.training.ums.response.TransactionRequest;
 
 @Service
@@ -22,6 +25,19 @@ public class TransactionsService {
 		tRepository.save(transaction);
 
 	}
+	
+	public void deposit(TransactionObject t1) {
+		// TODO Auto-generated method stub
+		tRepository.deposit(t1.getCustomerId(),t1.getAmount());
+		
+	}
+	
+	public void withdraw(TransactionObject t1) {
+		// TODO Auto-generated method stub
+		tRepository.withdraw(t1.getCustomerId(),t1.getAmount());
+		
+	}
+	
 
 	public List<Transactions> findall(TransactionRequest t) {
 
