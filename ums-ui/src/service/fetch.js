@@ -1,5 +1,5 @@
 const { REACT_APP_API_URL } = process.env;
-export async function fetchStatement(e,setTableData,setToggle){
+export async function fetchStatement(e,setTableData,setToggle,customerId){
     e.preventDefault();
     var a = await fetch(`${REACT_APP_API_URL}/api/statement`,{
         method:'POST',
@@ -8,7 +8,7 @@ export async function fetchStatement(e,setTableData,setToggle){
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          c_id:e.target.cid.value,
+          c_id:customerId,
           t_type:e.target.type.value,
           fDate:e.target.sdate.value,
           tDate:e.target.edate.value
@@ -19,11 +19,11 @@ export async function fetchStatement(e,setTableData,setToggle){
     setToggle(1);
 }
 export async function fetchBalance(customerId){
-    var balanceResp = await fetch(`${REACT_APP_API_URL}/api/balance?c_id=`+customerId,{
+    var balanceResp = await fetch(`${REACT_APP_API_URL}/api/balance?c_id=${customerId}`,{
         method:'GET',
         mode:'cors'
     });
-    var loanResp = await fetch(`${REACT_APP_API_URL}/api/loanbalance?c_id=`+customerId,{
+    var loanResp = await fetch(`${REACT_APP_API_URL}/api/loanbalance?c_id=${customerId}`,{
         method:'GET',
         mode:'cors'
     });
