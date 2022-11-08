@@ -3,6 +3,7 @@
 package com.wellsfargo.training.ums.model;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -72,8 +73,8 @@ public class Transactions {
 		return transactionDate;
 	}
 
-	public void setTransactionDate(Date transactionDate) {
-		this.transactionDate = transactionDate;
+	public void setTransactionDate(Date date) {
+		this.transactionDate = date;
 	}
 
 	public User getUser() {
