@@ -27,8 +27,6 @@ public class LoginRestController {
 	@Autowired
 	private LoginRestService lrservice;
 
-	//Open Postman and make POST request - http://localhost:8080/ums/api/register
-	//Under body tab --> raw --> Text --> Json and type the json data to be saved
 	@PostMapping("/register") 
 	@CrossOrigin(origins="http://localhost:3000/")
 	public ResponseEntity<Object> createUser(@Validated @RequestBody User user) throws ResourceNotFoundException{

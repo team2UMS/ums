@@ -2,7 +2,7 @@ package com.wellsfargo.training.ums.model;
 
 
 import java.util.Base64;
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -54,7 +54,6 @@ public class User {
 
 	@Column(name="dob")
 	@JsonFormat(pattern="yyyy-MM-dd")
-	@Temporal(TemporalType.DATE)
 	private Date dob;
 
 	@Column(name="branch")
@@ -147,8 +146,8 @@ public class User {
 	public void setDob(Date dob) {
 		this.dob = dob;
 	}
-	
-	
+
+
 	public String getBranch() {
 		return branch;
 	}
@@ -157,7 +156,7 @@ public class User {
 	public void setBranch(String branch) {
 		this.branch = branch;
 	}
-	
+
 	public long getCustomerId() {
 		return customerId;
 	}

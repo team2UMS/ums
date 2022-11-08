@@ -11,13 +11,7 @@ function UserMenu() {
   return (
     <>
     <Header/>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route path="/loan" element={<Loan />} />
-          <Route path="/statement" element={<Statement />} />
-          <Route path="/transactions" element={<Transactions />} />
-        </Route>
-      </Routes>
+    <Layout/>
     <Footer/>
     </>
   );
