@@ -1,12 +1,8 @@
 package com.wellsfargo.training.ums.rest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
@@ -53,11 +49,11 @@ public class LoginRestControllerTest {
 				+ "\"message\":\"Registered\","
 				+ "\"status\":200"
 				+ "}";
-		// studentService.addCourse to respond back with mockCourse
+		
 		Mockito.when(loginService.registerUser(
 				Mockito.any(User.class))).thenReturn(userToPost);
 
-		// Send course as body to /students/Student1/courses
+
 		RequestBuilder requestBuilder = MockMvcRequestBuilders
 				.post("/api/register")
 				.accept(MediaType.APPLICATION_JSON).content(exampleJSON)
