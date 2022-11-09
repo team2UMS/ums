@@ -28,6 +28,10 @@ public class LoginRestService {
 		
 		return userRepository.findByContactNumber(contactNumber);
 	}
+public Optional<User> findUserById(Long customerId) {
+		
+		return userRepository.findById(customerId);
+	}
 	
 	
 }

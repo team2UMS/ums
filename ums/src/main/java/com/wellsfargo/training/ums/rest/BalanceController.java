@@ -37,6 +37,7 @@ public class BalanceController {
 	
 
 	@GetMapping("/balance")
+	@CrossOrigin(origins="http://localhost:3000/")
 	public ResponseEntity<Object> addLoan(@Validated @RequestParam(name="c_id") long customerId){
 		
 	

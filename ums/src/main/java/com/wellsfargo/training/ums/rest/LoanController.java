@@ -3,6 +3,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,11 +25,12 @@ public class LoanController {
 private LoanService lservice;
 
 @PostMapping("/applyloan")
+@CrossOrigin(origins="http://localhost:3000/")
 public ResponseEntity<Object> addLoan(@Validated @RequestBody Loan loan)
 {
 	
 	long lAmount=lservice.findLoan(loan).getLoanAmount()+loan.getLoanAmount();
-	
+	System.out.println(loan.getLoanAmount());
 	if(lAmount>1000000) {
 		return ResponseHandler.generateResponse("Loan limit(10,00,000) exceeded check your loan Balance once!", HttpStatus.OK, null);
 	}
@@ -43,6 +45,7 @@ public ResponseEntity<Object> addLoan(@Validated @RequestBody Loan loan)
 
 	
 	@GetMapping("/loanbalance")
+	@CrossOrigin(origins="http://localhost:3000/")
 	public ResponseEntity<Object> addLoan(@Validated @RequestParam(name="c_id") long customerId){
 		Loan l=new Loan();
 		l.setBranch("");

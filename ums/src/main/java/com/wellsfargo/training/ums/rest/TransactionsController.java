@@ -24,6 +24,7 @@ import com.wellsfargo.training.ums.response.ResponseHandler;
 import com.wellsfargo.training.ums.response.TransactionObject;
 import com.wellsfargo.training.ums.response.TransactionRequest;
 import com.wellsfargo.training.ums.service.BalanceService;
+import com.wellsfargo.training.ums.service.LoginRestService;
 import com.wellsfargo.training.ums.service.TransactionsService;
 
 
@@ -39,19 +40,20 @@ public class TransactionsController {
 	
 	@Autowired
 	private BalanceService bService;
-
+	@Autowired
+	private LoginRestService lService;
 
 
 	@PostMapping("/deposit")
-	@CrossOrigin("origins=\"http://localhost:3000/")
+	@CrossOrigin(origins="http://localhost:3000/")
 	public ResponseEntity<Object> deposit(@Validated @RequestBody TransactionObject t1) {
-		
-	
+		User user=lService.findUserById(t1.getCustomerId()).get();
 		tservice.deposit(t1);
 		Transactions t=new Transactions();
 		t.setAmount(t1.getAmount());
 		t.setTransactionDate(Date.valueOf(LocalDate.now()));
 		t.setTransactionType("deposit");
+		t.setUser(user);
 		tservice.SaveTransaction(t);
 		
 		return ResponseHandler.generateResponse("Successful", HttpStatus.OK, null);
@@ -64,7 +66,7 @@ public class TransactionsController {
 
 
 	@PostMapping("/withdraw")
-	@CrossOrigin("origins=\"http://localhost:3000/")
+	@CrossOrigin(origins="http://localhost:3000/")
 	public ResponseEntity<Object> withdraw(@Validated @RequestBody TransactionObject t1) {
 		
 		Balance balance=bService.balance(t1.getCustomerId());
@@ -73,10 +75,12 @@ public class TransactionsController {
 		}
 		else {
 			tservice.withdraw(t1);
+			User user=lService.findUserById(t1.getCustomerId()).get();
 			Transactions t=new Transactions();
 			t.setAmount(t1.getAmount());
 			t.setTransactionDate(Date.valueOf(LocalDate.now()));
 			t.setTransactionType("withdraw");
+			t.setUser(user);
 			tservice.SaveTransaction(t);
 			return ResponseHandler.generateResponse("Successful", HttpStatus.OK, null);
 		}

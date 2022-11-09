@@ -12,6 +12,6 @@ import com.wellsfargo.training.ums.model.User;
 public interface UserRepository extends JpaRepository<User, Long>{
 
 	Optional<User> findByContactNumber(String contactNumber);
-	
+	Optional<User> findById(Long customerId);
 
 }
