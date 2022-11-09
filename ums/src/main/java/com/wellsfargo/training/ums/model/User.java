@@ -162,5 +162,10 @@ public class User {
 	}
 
 
+	public void setCustomerId(long i) {
+		this.customerId = i;
+	}
+
+
 
 }
