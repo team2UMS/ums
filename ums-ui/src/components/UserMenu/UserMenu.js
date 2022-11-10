@@ -1,13 +1,20 @@
 import ReactDOM from "react-dom/client";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route,useNavigate } from "react-router-dom";
 import Layout from "./Layout";
-import Loan from "../Loan/Loan";
-import Statement from "../Statement/Statement";
-import Transactions from "../Transactions/Transactions";
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
-
+import { useEffect } from "react";
+import {useGlobalState} from "../../service/GlobalState";
 function UserMenu() {
+  const [globalState]=useGlobalState();
+  const navigate=useNavigate();
+  useEffect(() => {
+    if(globalState.customerId===undefined){
+      alert("Session Expired");
+      navigate("../", { replace: true });
+    }
+  }, []);
+  
   return (
     <>
     <Header/>

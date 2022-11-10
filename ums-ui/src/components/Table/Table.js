@@ -2,7 +2,7 @@ const Table = (data)=>{
     console.log(data);
     return (<div className="container">
     <table className="main-edit-table" align="right">
-        <thead>
+    <div className='text-white'><thead>
             <tr>
                 <th className="sticky-column">Transaction ID</th>
                 <th className="sticky-column">Transaction Type</th>
@@ -11,7 +11,7 @@ const Table = (data)=>{
             </tr>
         </thead>
         <tbody>
-                {data.transactions.map((transaction) => (
+                {data.transactions.data?.map((transaction) => (
                     <tr key={transaction.transactionId}>
                         <td>{transaction.transactionId}</td>
                          <td>{transaction.transactionType}</td>
@@ -20,7 +20,7 @@ const Table = (data)=>{
                     </tr>      
                                 ))}
         </tbody>
-    </table>
+    </div></table>
 </div>);
 };
 export default Table;

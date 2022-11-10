@@ -10,21 +10,20 @@ export async function handleLoan(e,customerId){
         body: JSON.stringify({
           customerId:customerId,
           branch:e.target.branch.value,
-          loanamount:e.target.amount.value
+          loanAmount:e.target.amount.value
         })
     });
     var resp= await a.json();
     if(resp.status===200)
-    alert("Loan applied successfully");
+    alert(resp.message);
     else if(resp.status===400)
-    alert("Loan failure:Limit crossed");
+    alert(resp.message);
     else
     alert("Internal Server Error");
 
 }
 export async function handleTransaction(e,customerId){
   e.preventDefault();
-  console.log(e);
     var type=e.target.type.value;
     var a = await fetch(`${REACT_APP_API_URL}/api/`+type,{
         method:'POST',
@@ -40,8 +39,8 @@ export async function handleTransaction(e,customerId){
     });
     var resp= await a.json();
     if(resp.status===200)
-    alert(type+" Successfull");
+    alert(resp.message);
     else if(resp.status===400)
-    alert(type+" failed");
+    alert(resp.message);
     else alert("Internal Server Error");
 }

@@ -31,6 +31,14 @@ export async function handleLogin(e,navigate,updateState){
 }
 export async function handleRegister(e,navigate){
     e.preventDefault();
+    console.log({contactNumber:e.target.uno.value,
+        firstName:e.target.fname.value,
+        lastName:e.target.lname.value,
+        city:e.target.city.value,
+        occupation:e.target.occ.value,
+        dob:e.target.dob.value,
+        branch:e.target.branch.value,
+        password:e.target.pass.value});
     var a = await fetch(`${REACT_APP_API_URL}/api/register`,{
         method:'POST',
         mode:'cors',

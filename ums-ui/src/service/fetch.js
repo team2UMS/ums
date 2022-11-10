@@ -1,37 +1,44 @@
 const { REACT_APP_API_URL } = process.env;
-export async function fetchStatement(e,setTableData,setToggle,customerId){
+export  function fetchStatement(e,customerId){
     e.preventDefault();
-    var a = await fetch(`${REACT_APP_API_URL}/api/statement`,{
+    console.log(JSON.stringify({
+        customerId:customerId,
+        transactionType:e.target.type.value,
+        fromDate:e.target.sdate.value,
+        toDate:e.target.edate.value
+      }))
+    return fetch(`${REACT_APP_API_URL}/api/statement`,{
         method:'POST',
         mode:'cors',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          c_id:customerId,
-          t_type:e.target.type.value,
-          fDate:e.target.sdate.value,
-          tDate:e.target.edate.value
+          customerId:customerId,
+          transactionType:e.target.type.value,
+          fromDate:e.target.sdate.value,
+          toDate:e.target.edate.value
         })
+    })
+    .then(function(response) {
+        return response.json();
     });
-    var resp= await a.json();
-    setTableData(resp);
-    setToggle(1);
 }
-export async function fetchBalance(customerId){
-    var balanceResp = await fetch(`${REACT_APP_API_URL}/api/balance?c_id=${customerId}`,{
+export function fetchAccBalance(customerId){
+    return fetch(`${REACT_APP_API_URL}/api/balance?c_id=`+customerId,{
         method:'GET',
         mode:'cors'
+    }).then(res=>{
+        return res.json();
     });
-    var loanResp = await fetch(`${REACT_APP_API_URL}/api/loanbalance?c_id=${customerId}`,{
+
+}
+export function fetchLoanBalance(customerId){
+    return fetch(`${REACT_APP_API_URL}/api/loanbalance?c_id=`+customerId,{
         method:'GET',
         mode:'cors'
+    }).then(res=>{return res.json();
     });
-    var balance= await balanceResp.json();
-    var loan= await loanResp.json();
-    if(balance.status===200 && loan.status===200)
-    return [balance.message,loan.message];
-    else
-    alert("Internal Server Error");
+    
 
 }

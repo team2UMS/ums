@@ -160,8 +160,6 @@ public class User {
 	public long getCustomerId() {
 		return customerId;
 	}
-
-
 	public void setCustomerId(long i) {
 		this.customerId = i;
 	}

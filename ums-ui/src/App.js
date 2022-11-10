@@ -10,11 +10,13 @@ import Loan from './components/Loan/Loan';
 import Statement from './components/Statement/Statement';
 import Transactions from './components/Transactions/Transactions';
 import Balance from './components/Balance/Balance';
+import Home from './components/Home/Home'
 function App() {
   return (<div className='App'>
     <Router>
       <Routes>
-        <Route path='/' element={<Login/>}/>
+      <Route path='/' element={<Home/>}/>
+        <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Register/>} />
         <Route path='/userMenu' element={<UserMenu/>} />
         <Route path="/loan" element={<Loan />} />
